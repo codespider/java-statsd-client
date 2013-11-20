@@ -77,6 +77,10 @@ public interface StatsDClient {
      */
     void recordGaugeValue(String aspect, int value);
 
+    void incrementGauge(String aspect, int value);
+
+    void decrementGauge(String aspect, int value);
+
     /**
      * Convenience method equivalent to {@link #recordGaugeValue(String, int)}. 
      */
