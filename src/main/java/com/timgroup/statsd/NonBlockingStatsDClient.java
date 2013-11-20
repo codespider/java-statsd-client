@@ -231,9 +231,13 @@ public final class NonBlockingStatsDClient implements StatsDClient {
     public void time(String aspect, int value) {
         recordExecutionTime(aspect, value);
     }
-
+    @Override
     public void incrementGauge(String aspect, int value) {
-        throw new UnsupportedOperationException();
+        send(String.format("%s.%s:%s|g", prefix, aspect, "+"+value));
+    }
+    @Override
+    public void decrementGauge(String aspect, int value) {
+        send(String.format("%s.%s:%s|g", prefix, aspect, "-"+value));
     }
 
     private void send(final String message) {
